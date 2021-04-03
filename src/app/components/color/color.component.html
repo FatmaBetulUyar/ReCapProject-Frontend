@@ -1,18 +1,21 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-<table *ngIf="dataLoaded==true" class="table table-danger table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Color Id</th>
-            <th scope="col">Color Name</th>
-        </tr>
-    </thead>
-    <tr *ngFor="let color of colors">
-        <td>{{color.colorId}}</td>
-        <td>{{color.colorName}}</td>
-        
-        
-    </tr>
-</table>
 
+<div class="list-group">
+    <button
+      type="button"
+      style="background-color: #1c5104; color: white"
+      (click)="currentColor = null"
+      [class]="getAllColorClass()"
+      routerLink="/cars"
+    >
+      Colors All
+    </button>
+    <button
+      *ngFor="let color of colors"
+      (click)="setCurrentColor(color)"
+      routerLink="/cars/color/{{ color.colorId }}"
+      type="button"
+      [class]="getCurrentColorClass(color)"
+    >
+      {{ color.colorName }}
+    </button>
+  </div>
