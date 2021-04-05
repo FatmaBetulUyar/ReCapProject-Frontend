@@ -13,6 +13,8 @@ export class CarComponent implements OnInit {
 
   cars:Car[]=[];
   dataLoaded: boolean=false;
+
+
  
   
   
@@ -53,8 +55,6 @@ getCarsByColor(colorId:number){
     this.dataLoaded=true;
   })
 }
-
-
 
 
 }
