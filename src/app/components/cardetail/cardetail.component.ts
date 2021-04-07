@@ -14,12 +14,13 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CardetailComponent implements OnInit {
 
-  carDetails:Car;
+  carDetails:CarDetail;
   carImages:CarImage[]=[];
+  path = "https://localhost:44372/Images/";
   dataLoaded=false;
   
 
-  constructor(private carDetailService: CarDetailService, 
+  constructor(private carService: CarService, 
     private carImageService:CarImageService,
     private activedRoute: ActivatedRoute) { }
 
@@ -36,8 +37,9 @@ export class CardetailComponent implements OnInit {
 }
 
 getCarDetailById(carId:number){
-  this.carDetailService.getCarDetailById(carId).subscribe(response =>{
+  this.carService.getCarDetailById(carId).subscribe(response =>{
     this.carDetails=response.data[0];
+   
   })
  
 }  
@@ -50,6 +52,12 @@ getImageByCarId(carId:number){
      
     });
 }
+
+getImagePath(image:string)
+  {
+    let newPath = this.path + image;
+    return newPath; 
+  }
 sliderItemActive(index: number){
   if(index === 0){
     return "carousel-item active";
